@@ -1,0 +1,16 @@
+---
+name: Demo of env vars
+on:
+  - pull_request
+jobs:
+  demo:
+    name: Demo job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Run script
+        run: |
+          source ${{ github.workspace}}/demo.sh
+        env:
+          DEMO_VAR: "hello, world"
