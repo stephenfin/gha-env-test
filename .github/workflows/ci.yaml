@@ -6,6 +6,11 @@ on:
 jobs:
   demo:
     name: Demo job
+    strategy:
+      matrix:
+        include:
+          - demo_bool: true
+          - demo_bool: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -15,3 +20,4 @@ jobs:
           source ${{ github.workspace}}/demo.sh
         env:
           DEMO_VAR: "hello, world"
+          DEMO_BOOL: ${{ matrix.demo_bool }}
